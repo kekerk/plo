@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.mapper.BoardMapper">
+	<select id="list" resultType="Board" parameterType="map">
+		select itemno,name,brand,price,color,discount,cost,content,regdate,total,cate,subcate from item
+		<if test="itemno != null">
+			where itemno=#{itemno}
+		</if>
+		<if test="searchType != null and searchContent != null">
+			where ${searchType} like '%${searchContent}%'
+		</if>
+		limit #{startrow}, #{limit}
+	</select>
+	<select id="selectcount" resultType="Integer" parameterType="map">
+		select count(*) from item
+		<if test="searchType != null and searchContent != null">
+			where ${searchType} like '%${searchContent}%'
+		</if>
+	</select>
+</mapper>

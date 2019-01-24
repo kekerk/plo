@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.mapper.QnaMapper">
+<select id="list" resultType="Qna" parameterType="map">
+		select * from qa
+		<if test="itemno != null">
+			where itemno=#{itemno}
+		</if>
+		limit #{startrow}, #{limit}
+	</select>
+<select id="anslist" resultType="Qna" parameterType="map">
+		select num,qtype,itemno,title,content,answer,userid,regidate from qa
+		<if test="num != null">
+			where num=#{num}
+		</if>
+		limit #{startrow}, #{limit}
+	</select>
+</mapper>

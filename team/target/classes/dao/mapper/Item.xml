@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.mapper.ItemMapper">
+
+<select id="count" resultType="Integer" parameterType="map">
+   select count(*) from item
+     <trim prefix="where" prefixOverrides="AND | OR">
+    <if test="cate !=null">
+    and cate = #{cate}
+    </if>
+    <if test="subcate !=null">
+    and subcate = #{subcate}
+    </if>
+    <if test="searchContent != null and searchType != null">
+    and ${searchType} like '%${searchContent}%'
+    </if>
+    <if test="searchPriceStart != null and searchPriceEnd == null">
+    and price > #{searchPriceStart}
+    </if>
+    <if test="searchPriceStart == null and searchPriceEnd != null">
+    and price &lt; #{searchPriceEnd}
+    </if>
+    <if test="searchPriceStart != null and searchPriceEnd != null">
+    and price &lt; ${searchPriceEnd} and price > ${searchPriceStart}
+   </if>
+      </trim>
+  
+</select>
+	<select id="list" resultType="Item" parameterType="map">
+		select * from item
+		<if test="itemno != null">
+			where itemno=#{itemno}
+		</if>
+		order by itemno
+</select>
+<select id="select" resultType="Item" parameterType="map">
+   select itemno,name,brand,price,color,discount,cost,content,regdate,total,cate,subcate from item
+      <trim prefix="where" prefixOverrides="AND | OR">
+   <if test="itemno !=null">
+    and itemno = #{itemno}
+    </if>
+    <if test="cate !=null">
+    and cate = #{cate}
+    </if>
+    <if test="subcate !=null">
+    and subcate = #{subcate}
+    </if>
+    <if test="searchContent != null and searchType != null">
+    and ${searchType} like '%${searchContent}%'
+    </if>
+    <if test="searchPriceStart != null and searchPriceEnd == null">
+    and price > #{searchPriceStart}
+    </if>
+    <if test="searchPriceStart == null and searchPriceEnd != null">
+    and price &lt; #{searchPriceEnd}
+    </if>
+    <if test="searchPriceStart != null and searchPriceEnd != null">
+    and price &lt; ${searchPriceEnd} and price > ${searchPriceStart}
+   </if>
+      </trim>
+  
+    limit #{startrow}, #{limit}
+</select>
+</mapper>

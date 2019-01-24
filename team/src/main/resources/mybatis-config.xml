@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-/mybatis.org//DTD config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="logic.User" alias="User"/>
+		<typeAlias type="logic.Item" alias="Item"/>
+		<typeAlias type="logic.Picture" alias="Picture"/>
+		<typeAlias type="logic.Size" alias="Size"/>
+		<typeAlias type="logic.Orders" alias="Orders"/>
+		<typeAlias type="logic.OrderItem" alias="OrderItem"/>
+		<typeAlias type="logic.Board" alias="Board"/>
+		<typeAlias type="logic.ItemEval" alias="ItemEval"/>
+		<typeAlias type="logic.Qna" alias="Qna"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="dao/mapper/User.xml"/>
+		<mapper resource="dao/mapper/Item.xml"/>
+		<mapper resource="dao/mapper/Orders.xml"/>
+		<mapper resource="dao/mapper/OrderItem.xml"/>
+		<mapper resource="dao/mapper/Board.xml"/>
+		<mapper resource="dao/mapper/Eval.xml"/>
+		<mapper resource="dao/mapper/Qna.xml"/>
+	</mappers>
+</configuration>
